@@ -1,0 +1,546 @@
+/* ==========================================================================
+   DarahConnect Fluid Interface System
+   Built on Bootstrap 5.3 + Apple Fluid Interface Principles (WWDC 2018–2026)
+   Brand Palette: Crimson #DC2626 · Ink #0F172A · Slate #64748B · Canvas #F8FAFC
+   ========================================================================== */
+
+:root {
+    --dc-crimson: #dc2626;
+    --dc-crimson-hover: #b91c1c;
+    --dc-crimson-active: #991b1b;
+    --dc-crimson-soft: #fef2f2;
+    --dc-crimson-subtle: #fee2e2;
+    --dc-crimson-border: #fecaca;
+
+    --dc-ink: #0f172a;
+    --dc-ink-secondary: #1e293b;
+    --dc-slate: #475569;
+    --dc-muted: #64748b;
+    --dc-border: rgba(15, 23, 42, 0.08);
+    --dc-border-strong: rgba(15, 23, 42, 0.14);
+
+    --dc-canvas: #f8fafc;
+    --dc-surface: #ffffff;
+    --dc-surface-elevated: #ffffff;
+    --dc-surface-sunken: #f1f5f9;
+
+    --dc-success: #059669;
+    --dc-success-soft: #ecfdf5;
+    --dc-warning: #d97706;
+    --dc-warning-soft: #fffbeb;
+    --dc-info: #0284c7;
+    --dc-info-soft: #f0f9ff;
+
+    --dc-radius-sm: 0.625rem;
+    --dc-radius-md: 0.9375rem;
+    --dc-radius-lg: 1.25rem;
+    --dc-radius-xl: 1.625rem;
+    --dc-radius-pill: 999rem;
+
+    --dc-shadow-xs: 0 1px 2px rgba(15, 23, 42, 0.04);
+    --dc-shadow-sm: 0 4px 14px -2px rgba(15, 23, 42, 0.06), 0 2px 6px -2px rgba(15, 23, 42, 0.04);
+    --dc-shadow-md: 0 12px 32px -6px rgba(15, 23, 42, 0.09), 0 4px 12px -3px rgba(15, 23, 42, 0.05);
+    --dc-shadow-lg: 0 24px 56px -12px rgba(15, 23, 42, 0.16), 0 8px 20px -6px rgba(15, 23, 42, 0.07);
+    --dc-shadow-crimson: 0 10px 26px -6px rgba(220, 38, 38, 0.34);
+
+    /* Bootstrap 5 variable overrides */
+    --bs-primary: #dc2626;
+    --bs-primary-rgb: 220, 38, 38;
+    --bs-danger: #dc2626;
+    --bs-danger-rgb: 220, 38, 38;
+    --bs-body-bg: #f8fafc;
+    --bs-body-color: #0f172a;
+    --bs-border-color: rgba(15, 23, 42, 0.09);
+    --bs-font-sans-serif: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Inter", "Segoe UI", system-ui, sans-serif;
+
+    font: 100%/1.55 var(--bs-font-sans-serif);
+    font-optical-sizing: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    background-color: var(--dc-canvas);
+    color: var(--dc-ink);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+/* ==========================================================================
+   Optical Typography Hierarchy (§15: size-specific tracking & leading)
+   ========================================================================== */
+
+.dc-display {
+    font-size: clamp(2.1rem, 4.4vw, 3.5rem);
+    font-weight: 750;
+    line-height: 1.07;
+    letter-spacing: -0.028em;
+    color: var(--dc-ink);
+    font-optical-sizing: auto;
+}
+
+.dc-title-1, h1 {
+    font-size: clamp(1.75rem, 3vw, 2.35rem);
+    font-weight: 700;
+    line-height: 1.14;
+    letter-spacing: -0.022em;
+    color: var(--dc-ink);
+}
+
+.dc-title-2, h2 {
+    font-size: clamp(1.35rem, 2.2vw, 1.75rem);
+    font-weight: 680;
+    line-height: 1.2;
+    letter-spacing: -0.016em;
+    color: var(--dc-ink);
+}
+
+.dc-title-3, h3 {
+    font-size: clamp(1.125rem, 1.6vw, 1.3rem);
+    font-weight: 650;
+    line-height: 1.28;
+    letter-spacing: -0.01em;
+    color: var(--dc-ink);
+}
+
+.dc-lead {
+    font-size: clamp(1.02rem, 1.3vw, 1.15rem);
+    line-height: 1.6;
+    letter-spacing: -0.004em;
+    color: var(--dc-slate);
+}
+
+.dc-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: 0.055em;
+    text-transform: uppercase;
+    color: var(--dc-crimson);
+}
+
+.dc-caption {
+    font-size: 0.8125rem;
+    line-height: 1.45;
+    letter-spacing: 0.008em;
+    color: var(--dc-muted);
+}
+
+.dc-tabular {
+    font-variant-numeric: tabular-nums;
+}
+
+/* ==========================================================================
+   Materials & Depth (§12: Translucent Chrome & Vibrancy)
+   ========================================================================== */
+
+.dc-navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+    background: rgba(248, 250, 252, 0.76);
+    backdrop-filter: blur(22px) saturate(180%);
+    -webkit-backdrop-filter: blur(22px) saturate(180%);
+    border-bottom: 1px solid rgba(15, 23, 42, 0.05);
+    transition: background-color 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+}
+
+.dc-navbar[data-scrolled="true"] {
+    background: rgba(255, 255, 255, 0.84);
+    border-bottom-color: rgba(15, 23, 42, 0.09);
+    box-shadow: 0 8px 28px -10px rgba(15, 23, 42, 0.09);
+}
+
+.dc-glass-bar {
+    background: rgba(255, 255, 255, 0.78);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    box-shadow: var(--dc-shadow-sm);
+    border-radius: var(--dc-radius-lg);
+}
+
+/* Solid Crisp Cards (never stack translucent on translucent) */
+.dc-card {
+    background: var(--dc-surface);
+    border: 1px solid var(--dc-border);
+    border-radius: var(--dc-radius-lg);
+    box-shadow: var(--dc-shadow-sm);
+    transition: box-shadow 220ms ease, border-color 220ms ease, transform 140ms ease-out;
+}
+
+.dc-card-interactive {
+    cursor: pointer;
+    will-change: transform;
+}
+
+.dc-card-interactive:hover {
+    border-color: rgba(220, 38, 38, 0.24);
+    box-shadow: var(--dc-shadow-md);
+}
+
+/* ==========================================================================
+   Instant Response on Pointer-Down (§1 & §10: Zero Perceived Latency)
+   ========================================================================== */
+
+.btn,
+.dc-pressable,
+.dc-card-interactive,
+.dc-nav-pill {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    user-select: none;
+}
+
+.btn {
+    border-radius: var(--dc-radius-md);
+    font-weight: 600;
+    letter-spacing: -0.006em;
+    padding: 0.625rem 1.15rem;
+    min-height: 2.65rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    transition: transform 95ms ease-out, background-color 150ms ease, border-color 150ms ease, box-shadow 150ms ease, color 150ms ease;
+    will-change: transform;
+}
+
+.btn-sm {
+    min-height: 2.15rem;
+    padding: 0.375rem 0.85rem;
+    border-radius: var(--dc-radius-sm);
+    font-size: 0.85rem;
+}
+
+.btn-lg {
+    min-height: 3.15rem;
+    padding: 0.8rem 1.5rem;
+    border-radius: var(--dc-radius-md);
+    font-size: 1.02rem;
+}
+
+/* Feedback fires immediately on press, before click/release */
+.btn:active,
+.btn[data-pressed="true"],
+.dc-pressable:active,
+.dc-pressable[data-pressed="true"] {
+    transform: scale(0.968);
+}
+
+.dc-card-interactive:active,
+.dc-card-interactive[data-pressed="true"] {
+    transform: scale(0.985);
+}
+
+.btn-primary,
+.btn-dc-primary {
+    background-color: var(--dc-crimson);
+    border-color: var(--dc-crimson);
+    color: #ffffff;
+    box-shadow: 0 2px 8px rgba(220, 38, 38, 0.22);
+}
+
+.btn-primary:hover,
+.btn-dc-primary:hover,
+.btn-primary:focus-visible,
+.btn-dc-primary:focus-visible {
+    background-color: var(--dc-crimson-hover);
+    border-color: var(--dc-crimson-hover);
+    color: #ffffff;
+    box-shadow: var(--dc-shadow-crimson);
+}
+
+.btn-dc-secondary {
+    background-color: var(--dc-surface);
+    border: 1px solid var(--dc-border-strong);
+    color: var(--dc-ink);
+    box-shadow: var(--dc-shadow-xs);
+}
+
+.btn-dc-secondary:hover,
+.btn-dc-secondary:focus-visible {
+    background-color: var(--dc-surface-sunken);
+    border-color: rgba(15, 23, 42, 0.22);
+    color: var(--dc-ink);
+}
+
+.btn-dc-soft {
+    background-color: var(--dc-crimson-soft);
+    border: 1px solid var(--dc-crimson-border);
+    color: var(--dc-crimson);
+}
+
+.btn-dc-soft:hover {
+    background-color: var(--dc-crimson-subtle);
+    color: var(--dc-crimson-hover);
+}
+
+/* Navigation Pills */
+.dc-nav-pill {
+    padding: 0.48rem 0.9rem;
+    border-radius: var(--dc-radius-pill);
+    font-size: 0.9rem;
+    font-weight: 560;
+    color: var(--dc-slate);
+    text-decoration: none;
+    transition: transform 95ms ease-out, background-color 150ms ease, color 150ms ease;
+}
+
+.dc-nav-pill:hover {
+    background-color: rgba(15, 23, 42, 0.05);
+    color: var(--dc-ink);
+}
+
+.dc-nav-pill.active {
+    background-color: var(--dc-crimson-soft);
+    color: var(--dc-crimson);
+    font-weight: 640;
+}
+
+/* ==========================================================================
+   Segmented Control with Interruptible Spring Pill (§3 & §4)
+   ========================================================================== */
+
+.dc-segmented {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem;
+    background-color: var(--dc-surface-sunken);
+    border: 1px solid var(--dc-border);
+    border-radius: var(--dc-radius-md);
+    gap: 0.2rem;
+}
+
+.dc-segmented-indicator {
+    position: absolute;
+    top: 0.25rem;
+    bottom: 0.25rem;
+    left: 0;
+    background: var(--dc-surface);
+    border-radius: calc(var(--dc-radius-md) - 0.2rem);
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08), 0 1px 2px rgba(15, 23, 42, 0.05);
+    pointer-events: none;
+    will-change: transform, width;
+    z-index: 0;
+}
+
+.dc-segmented-btn {
+    position: relative;
+    z-index: 1;
+    border: 0;
+    background: transparent;
+    padding: 0.48rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--dc-muted);
+    border-radius: calc(var(--dc-radius-md) - 0.2rem);
+    cursor: pointer;
+    transition: color 160ms ease;
+}
+
+.dc-segmented-btn[aria-selected="true"],
+.dc-segmented-btn.active {
+    color: var(--dc-ink);
+}
+
+/* ==========================================================================
+   Form Controls & Inline Feedback (§16)
+   ========================================================================== */
+
+.form-label {
+    font-size: 0.875rem;
+    font-weight: 620;
+    color: var(--dc-ink-secondary);
+    margin-bottom: 0.4rem;
+}
+
+.form-control,
+.form-select {
+    border-radius: var(--dc-radius-md);
+    border: 1px solid var(--dc-border-strong);
+    padding: 0.65rem 0.95rem;
+    font-size: 0.95rem;
+    background-color: var(--dc-surface);
+    color: var(--dc-ink);
+    transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--dc-crimson);
+    box-shadow: 0 0 0 0.22rem rgba(220, 38, 38, 0.14);
+}
+
+/* ==========================================================================
+   Blood Type Badges & Clinical Status Pills (Vibrant Solid Layers)
+   ========================================================================== */
+
+.dc-blood-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.85rem;
+    height: 2.85rem;
+    padding: 0 0.65rem;
+    border-radius: var(--dc-radius-md);
+    background: linear-gradient(145deg, #ef4444 0%, #dc2626 60%, #b91c1c 100%);
+    color: #ffffff;
+    font-weight: 760;
+    font-size: 1.05rem;
+    letter-spacing: -0.01em;
+    font-variant-numeric: tabular-nums;
+    box-shadow: 0 6px 16px -4px rgba(220, 38, 38, 0.38);
+}
+
+.dc-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.28rem 0.72rem;
+    border-radius: var(--dc-radius-pill);
+    font-size: 0.78rem;
+    font-weight: 650;
+    letter-spacing: 0.015em;
+}
+
+.dc-pill-critical {
+    background-color: var(--dc-crimson-soft);
+    color: var(--dc-crimson);
+    border: 1px solid var(--dc-crimson-border);
+}
+
+.dc-pill-success {
+    background-color: var(--dc-success-soft);
+    color: var(--dc-success);
+    border: 1px solid rgba(5, 150, 105, 0.22);
+}
+
+.dc-pill-warning {
+    background-color: var(--dc-warning-soft);
+    color: var(--dc-warning);
+    border: 1px solid rgba(217, 119, 6, 0.24);
+}
+
+.dc-pill-neutral {
+    background-color: var(--dc-surface-sunken);
+    color: var(--dc-slate);
+    border: 1px solid var(--dc-border);
+}
+
+/* ==========================================================================
+   Fluid Bottom Sheet / Drawer (§2, §5, §6, §9, §12)
+   ========================================================================== */
+
+.dc-sheet-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 1050;
+    background: rgba(15, 23, 42, 0.38);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 220ms ease;
+}
+
+.dc-sheet-backdrop.is-open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.dc-sheet-panel {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1055;
+    max-width: 42rem;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border-top: 1px solid rgba(255, 255, 255, 0.65);
+    border-radius: var(--dc-radius-xl) var(--dc-radius-xl) 0 0;
+    box-shadow: var(--dc-shadow-lg);
+    transform: translate3d(0, 105%, 0);
+    will-change: transform;
+    max-height: 88vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.dc-sheet-handle-area {
+    padding: 0.75rem 1rem 0.4rem;
+    cursor: grab;
+    touch-action: none;
+    display: flex;
+    justify-content: center;
+}
+
+.dc-sheet-handle {
+    width: 2.5rem;
+    height: 0.3rem;
+    border-radius: var(--dc-radius-pill);
+    background: rgba(100, 116, 139, 0.35);
+}
+
+/* Subtle Hero Mesh Accent (Static, non-vestibular per §14) */
+.dc-hero-surface {
+    position: relative;
+    background:
+        radial-gradient(48rem 28rem at 88% 12%, rgba(220, 38, 38, 0.08), transparent 65%),
+        radial-gradient(40rem 24rem at 10% 85%, rgba(220, 38, 38, 0.05), transparent 60%),
+        linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    border-bottom: 1px solid var(--dc-border);
+}
+
+/* ==========================================================================
+   Accessibility & User Preference Signals (§14)
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+    }
+
+    .btn:active,
+    .btn[data-pressed="true"],
+    .dc-pressable:active,
+    .dc-card-interactive:active {
+        transform: none !important;
+    }
+
+    .dc-sheet-panel {
+        transition: opacity 180ms ease !important;
+    }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+    .dc-navbar,
+    .dc-glass-bar,
+    .dc-sheet-panel {
+        background: #ffffff !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+    }
+}
+
+@media (prefers-contrast: more) {
+    :root {
+        --dc-border: rgba(15, 23, 42, 0.28);
+        --dc-border-strong: rgba(15, 23, 42, 0.45);
+    }
+
+    .dc-card,
+    .dc-glass-bar,
+    .form-control,
+    .form-select {
+        border-width: 1.5px;
+    }
+}
