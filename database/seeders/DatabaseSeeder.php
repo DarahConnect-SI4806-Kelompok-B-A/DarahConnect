@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             RegionSeeder::class,
             FacilitySeeder::class,
             StaffUserSeeder::class,
+            BloodRequestSeeder::class,
         ]);
     }
 }

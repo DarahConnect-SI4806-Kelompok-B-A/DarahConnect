@@ -8,6 +8,7 @@ use App\Enums\Rhesus;
 use App\Enums\UserRole;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -80,6 +81,11 @@ class User extends Authenticatable
     public function facility(): BelongsTo
     {
         return $this->belongsTo(Facility::class);
+    }
+
+    public function bloodRequests(): HasMany
+    {
+        return $this->hasMany(BloodRequest::class, 'requester_id');
     }
 
     public function hasRole(UserRole|string ...$roles): bool
